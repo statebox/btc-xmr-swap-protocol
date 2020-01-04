@@ -1,0 +1,632 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- This project file has been saved by the New GreatSPN Editor, v.100 --><project name="Swap" version="121">
+  <gspn name="PT" show-color-cmd="false" show-fluid-cmd="false" show-timed-cmd="false" view-rates="false">
+    <nodes>
+      <place marking="1" name="init" x="5.0" y="6.0"/>
+      <transition name="communicateSecretToA" nservers-x="0.5" type="EXP" x="13.55" y="6.0"/>
+      <place name="aKnowsS" x="13.0" y="16.0"/>
+      <transition name="T0" nservers-x="0.5" type="EXP" x="23.55" y="16.0"/>
+      <place name="haveCommunicated" x="22.0" y="6.0"/>
+    </nodes>
+    <edges>
+      <arc head="communicateSecretToA" kind="INPUT" tail="init"/>
+      <arc head="aKnowsS" kind="OUTPUT" tail="communicateSecretToA"/>
+      <arc head="haveCommunicated" kind="OUTPUT" tail="communicateSecretToA"/>
+      <arc head="T0" kind="INPUT" tail="aKnowsS"/>
+    </edges>
+  </gspn>
+  <measures gspn-name="PT" name="Measures" simplified-UI="false">
+    <assignments/>
+    <greatspn/>
+    <formulas>
+      <formula comment="Basic statistics of the toolchain execution." language="STAT"/>
+    </formulas>
+  </measures>
+  <gspn name="PT 1" show-color-cmd="false" show-fluid-cmd="false" show-timed-cmd="false" view-rates="false" zoom="150">
+    <nodes>
+      <place marking="1" name="world" x="4.0" y="10.0"/>
+      <transition name="initSwap" nservers-x="0.5" type="EXP" x="11.55" y="10.0"/>
+      <text-box bold="true" border-color="#000000" fill-color="none" height="7.5" name="__textBox0" shadow="true" shape="ROUND_RECTANGLE" text-color="#000000" width="14.0" x="2.0" y="7.0">price and quantity</text-box>
+      <place name="AliceKnowsOffer" x="19.0" y="6.0"/>
+      <place name="BobKnowsOffer" x="19.0" y="14.0"/>
+      <transition name="aliceInitParams" nservers-x="0.5" type="EXP" x="26.55" y="6.0"/>
+      <transition name="bobInitParams" nservers-x="0.5" type="EXP" x="26.55" y="14.0"/>
+      <place name="P0" x="32.0" y="6.0"/>
+      <place name="P1" x="32.0" y="14.0"/>
+      <place name="P2" x="40.0" y="6.0"/>
+      <place name="P3" x="40.0" y="14.0"/>
+      <transition label-x="-4.0" label-y="0.0" name="exchangeParams" nservers-x="0.5" type="EXP" x="36.55" y="10.0"/>
+      <transition name="bobVerifyParams" nservers-x="0.5" type="EXP" x="45.55" y="6.0"/>
+      <transition name="aliceVerifyParams" nservers-x="0.5" type="EXP" x="45.55" y="17.0"/>
+      <place name="P4" x="49.0" y="3.0"/>
+      <transition name="createBTX_Refund" nservers-x="0.5" type="EXP" x="54.55" y="3.0"/>
+      <transition name="createBTX_Lock" nservers-x="0.5" type="EXP" x="54.55" y="8.0"/>
+      <place name="BTX_Refund" x="59.0" y="3.0"/>
+      <place name="P6" x="59.0" y="8.0"/>
+      <place name="P7" x="49.0" y="8.0"/>
+      <transition name="bobSignRefund\" nservers-x="0.5" type="EXP" x="64.55" y="3.0"/>
+      <place name="P8" x="122.0" y="72.0"/>
+      <place name="bobSignedRefund" x="69.0" y="3.0"/>
+      <transition label-x="4.0" name="sendToAlice" nservers-x="0.5" type="EXP" x="74.55" y="8.0"/>
+      <place name="AliceParamsOK" x="78.0" y="17.0"/>
+      <place name="AliceKnowsBTX_Stuff" x="78.0" y="12.0"/>
+      <transition name="AliceVerifyBTX_Stuff" nservers-x="0.5" type="EXP" x="87.55" y="17.0"/>
+      <place name="AliceVerifyResult" x="95.0" y="17.0"/>
+      <transition name="VerifyFailed" nservers-x="0.5" type="EXP" x="95.55" y="24.0"/>
+      <transition name="VerifyOK" nservers-x="0.5" type="EXP" x="102.55" y="17.0"/>
+      <place name="P5" x="108.0" y="17.0"/>
+      <transition name="aliceSignBTX_Refund" nservers-x="0.5" type="EXP" x="114.55" y="17.0"/>
+      <place name="P9" x="120.0" y="17.0"/>
+      <place name="BobHasSignedBTX_Refund" x="131.0" y="5.0"/>
+      <transition name="aliceSendSigned_BTX_Refund" nservers-x="0.5" type="EXP" x="126.55" y="17.0"/>
+    </nodes>
+    <edges>
+      <arc head="initSwap" kind="INPUT" tail="world"/>
+      <arc head="AliceKnowsOffer" kind="OUTPUT" tail="initSwap"/>
+      <arc head="BobKnowsOffer" kind="OUTPUT" tail="initSwap"/>
+      <arc head="bobInitParams" kind="INPUT" tail="BobKnowsOffer"/>
+      <arc head="aliceInitParams" kind="INPUT" tail="AliceKnowsOffer"/>
+      <arc head="P0" kind="OUTPUT" tail="aliceInitParams"/>
+      <arc head="P1" kind="OUTPUT" tail="bobInitParams"/>
+      <arc head="exchangeParams" kind="INPUT" tail="P0"/>
+      <arc head="exchangeParams" kind="INPUT" tail="P1"/>
+      <arc head="P2" kind="OUTPUT" tail="exchangeParams"/>
+      <arc head="P3" kind="OUTPUT" tail="exchangeParams"/>
+      <arc head="aliceVerifyParams" kind="INPUT" tail="P3"/>
+      <arc head="bobVerifyParams" kind="INPUT" tail="P2"/>
+      <arc head="P4" kind="OUTPUT" tail="bobVerifyParams"/>
+      <arc head="P6" kind="OUTPUT" tail="createBTX_Lock"/>
+      <arc head="BTX_Refund" kind="OUTPUT" tail="createBTX_Refund"/>
+      <arc head="createBTX_Refund" kind="INPUT" tail="P4"/>
+      <arc head="P7" kind="OUTPUT" tail="bobVerifyParams"/>
+      <arc head="createBTX_Lock" kind="INPUT" tail="P7"/>
+      <arc head="bobSignRefund\" kind="INPUT" tail="BTX_Refund"/>
+      <arc head="bobSignedRefund" kind="OUTPUT" tail="bobSignRefund\"/>
+      <arc head="sendToAlice" kind="INPUT" tail="P6"/>
+      <arc head="sendToAlice" kind="INPUT" tail="bobSignedRefund"/>
+      <arc head="AliceKnowsBTX_Stuff" kind="OUTPUT" tail="sendToAlice"/>
+      <arc head="AliceParamsOK" kind="OUTPUT" tail="aliceVerifyParams"/>
+      <arc head="AliceVerifyBTX_Stuff" kind="INPUT" tail="AliceKnowsBTX_Stuff"/>
+      <arc head="AliceVerifyBTX_Stuff" kind="INPUT" tail="AliceParamsOK"/>
+      <arc head="AliceVerifyResult" kind="OUTPUT" tail="AliceVerifyBTX_Stuff"/>
+      <arc head="VerifyOK" kind="INPUT" tail="AliceVerifyResult"/>
+      <arc head="VerifyFailed" kind="INPUT" tail="AliceVerifyResult"/>
+      <arc head="P5" kind="OUTPUT" tail="VerifyOK"/>
+      <arc head="aliceSignBTX_Refund" kind="INPUT" tail="P5"/>
+      <arc head="P9" kind="OUTPUT" tail="aliceSignBTX_Refund"/>
+      <arc head="aliceSendSigned_BTX_Refund" kind="INPUT" tail="P9"/>
+      <arc head="BobHasSignedBTX_Refund" kind="OUTPUT" tail="aliceSendSigned_BTX_Refund"/>
+    </edges>
+  </gspn>
+  <gspn name="PT 2" show-color-cmd="false" show-fluid-cmd="false" show-timed-cmd="false" view-rates="false">
+    <nodes>
+      <place name="P0" x="8.0" y="10.0"/>
+      <transition label-x="3.5" label-y="-0.5" name="putOfferUp" nservers-x="0.5" type="EXP" x="12.55" y="10.0"/>
+      <place name="P1" x="23.0" y="6.0"/>
+      <place name="P2" x="23.0" y="13.0"/>
+      <transition name="T0" nservers-x="0.5" type="EXP" x="28.55" y="10.0"/>
+      <place name="P3" x="33.0" y="6.0"/>
+      <place name="P4" x="33.0" y="13.0"/>
+    </nodes>
+    <edges>
+      <arc head="P1" kind="OUTPUT" tail="putOfferUp"/>
+      <arc head="P2" kind="OUTPUT" tail="putOfferUp"/>
+      <arc head="T0" kind="INPUT" tail="P1"/>
+      <arc head="T0" kind="INPUT" tail="P2"/>
+      <arc head="P3" kind="OUTPUT" tail="T0"/>
+      <arc head="P4" kind="OUTPUT" tail="T0"/>
+      <arc head="putOfferUp" kind="INPUT" tail="P0"/>
+    </edges>
+  </gspn>
+  <gspn name="PT 3" show-color-cmd="false" show-fluid-cmd="false" show-timed-cmd="false" view-rates="false">
+    <nodes>
+      <transition label-x="-4.5" label-y="0.0" name="BTC_Swaplock" nservers-x="0.5" rotation="1.5707963267948966" type="EXP" x="34.55" y="35.0"/>
+      <transition label-x="4.5" label-y="0.0" name="XMR_Unlock" nservers-x="0.5" rotation="1.5707963267948966" type="EXP" x="57.55" y="32.0"/>
+      <transition name="bobTellsAliceAboutS" nservers-x="0.5" type="EXP" x="7.55" y="18.0"/>
+      <place marking="1" name="Bob" x="7.0" y="11.0"/>
+      <place label-x="5.5" label-y="0.0" name="Alice_knows_Secret" x="22.0" y="38.0"/>
+      <place alt-name-fn="LATEX_TEXT" label-y="-2.5" name="kaA" shown-as="\mathrm{{k^s_a}A}" x="23.0" y="29.0"/>
+      <place alt-name-fn="LATEX_TEXT" label-y="-2.5" name="copy_kaA" shown-as="\mathrm{baA}" x="27.0" y="29.0"/>
+      <transition label-x="8.5" label-y="0.0" name="broadCastSignedLockBTC_TX" nservers-x="0.5" rotation="1.5707963267948966" type="EXP" x="34.55" y="20.0"/>
+      <place label-x="4.5" label-y="0.0" marking="1" name="BobWallet" x="34.0" y="2.0"/>
+      <place label-x="5.0" label-y="0.0" name="LockedWallet" x="34.0" y="26.0"/>
+      <place name="AliceWallet" x="34.0" y="45.0"/>
+      <place name="SignedBTCRefund" x="18.0" y="13.0"/>
+      <place label-x="-4.5" label-y="0.0" name="lockBTC_TX" x="45.0" y="6.0"/>
+      <place label-x="6.0" label-y="0.0" name="signedBTC_Refund" x="53.0" y="7.0"/>
+      <place label-x="5.0" name="signed_lockBTC_TX" x="48.0" y="16.0"/>
+      <transition label-x="-2.0" label-y="0.0" name="signBTC" nservers-x="0.5" type="EXP" x="48.55" y="11.0"/>
+      <transition name="timeoutRefund" nservers-x="0.5" type="EXP" x="26.55" y="14.0"/>
+    </nodes>
+    <edges>
+      <arc head="bobTellsAliceAboutS" kind="INPUT" tail="Bob"/>
+      <arc head="Alice_knows_Secret" kind="OUTPUT" tail="bobTellsAliceAboutS"/>
+      <arc head="BTC_Swaplock" kind="INPUT" tail="Alice_knows_Secret"/>
+      <arc head="BTC_Swaplock" kind="INPUT" tail="kaA"/>
+      <arc head="BTC_Swaplock" kind="INPUT" tail="copy_kaA"/>
+      <arc head="broadCastSignedLockBTC_TX" kind="INPUT" tail="BobWallet"/>
+      <arc head="LockedWallet" kind="OUTPUT" tail="broadCastSignedLockBTC_TX"/>
+      <arc head="BTC_Swaplock" kind="INPUT" tail="LockedWallet"/>
+      <arc head="AliceWallet" kind="OUTPUT" tail="BTC_Swaplock"/>
+      <arc head="signBTC" kind="INPUT" tail="lockBTC_TX"/>
+      <arc head="signBTC" kind="INPUT" tail="signedBTC_Refund"/>
+      <arc head="signed_lockBTC_TX" kind="OUTPUT" tail="signBTC"/>
+      <arc head="broadCastSignedLockBTC_TX" kind="INPUT" tail="signed_lockBTC_TX"/>
+      <arc head="timeoutRefund" kind="INPUT" tail="LockedWallet"/>
+      <arc head="BobWallet" kind="OUTPUT" tail="timeoutRefund"/>
+    </edges>
+  </gspn>
+  <gspn name="Bitcoin_Flow" show-color-cmd="false" show-fluid-cmd="false" show-timed-cmd="false" view-rates="false">
+    <nodes>
+      <transition label-x="5.5" label-y="0.0" name="buy_SWAPLOCK" nservers-x="0.5" rotation="1.5707963267948966" type="EXP" x="63.55" y="36.0"/>
+      <transition label-x="6.0" label-y="0.0" name="publish_SWAPLOCK" nservers-x="0.5" rotation="1.5707963267948966" type="EXP" x="63.55" y="18.0"/>
+      <place label-x="4.5" label-y="0.0" marking="1" name="BobWallet" x="63.0" y="6.0"/>
+      <place label-x="5.0" label-y="0.0" name="LockedWallet" x="63.0" y="30.0"/>
+      <place name="AliceWallet" x="63.0" y="41.0"/>
+      <transition label-y="2.0" name="refund_SWAPLOCK" nservers-x="0.5" type="EXP" x="76.55" y="24.0"/>
+      <place name="HaveSignedRefundTX" x="43.0" y="24.0"/>
+      <transition label-x="5.0" label-y="0.0" name="aliceSignsRefund" nservers-x="0.5" type="EXP" x="38.55" y="17.0"/>
+      <place name="P0" x="43.0" y="11.0"/>
+      <transition label-y="2.5" name="bobSignsLockTx" nservers-x="0.5" type="EXP" x="49.55" y="11.0"/>
+      <place label-y="-2.0" name="signedLockTx" x="56.0" y="11.0"/>
+      <place name="AliceHasBobInfo" x="30.0" y="17.0"/>
+      <transition name="bobSendAliceInfo" nservers-x="0.5" type="EXP" x="23.55" y="17.0"/>
+      <place label-x="5.0" label-y="-0.5" name="unsignedLockTx" x="17.0" y="13.0"/>
+      <place name="unsignedRefundTx" x="17.0" y="21.0"/>
+      <transition name="bobInit" nservers-x="0.5" type="EXP" x="12.55" y="17.0"/>
+      <place marking="1" name="Start" x="7.0" y="17.0"/>
+      <place name="RefundWallet" x="76.0" y="18.0"/>
+      <transition name="claim_REFUND" nservers-x="0.5" type="EXP" x="83.55" y="18.0"/>
+      <transition label-x="4.5" label-y="0.0" name="spend_REFUND" nservers-x="0.5" type="EXP" x="76.55" y="11.0"/>
+      <text-box bold="true" border-color="#929292" fill-color="none" height="7.0" name="__textBox0" shadow="true" shape="ROUND_RECTANGLE" text-color="#929292" vert-pos="3" width="11.0" x="71.5" y="22.5">Timed Out</text-box>
+    </nodes>
+    <edges>
+      <arc head="publish_SWAPLOCK" kind="INPUT" tail="BobWallet"/>
+      <arc head="LockedWallet" kind="OUTPUT" tail="publish_SWAPLOCK"/>
+      <arc head="buy_SWAPLOCK" kind="INPUT" tail="LockedWallet"/>
+      <arc head="AliceWallet" kind="OUTPUT" tail="buy_SWAPLOCK"/>
+      <arc head="refund_SWAPLOCK" kind="INPUT" tail="LockedWallet"/>
+      <arc head="refund_SWAPLOCK" kind="INPUT" tail="HaveSignedRefundTX"/>
+      <arc head="HaveSignedRefundTX" kind="OUTPUT" tail="aliceSignsRefund"/>
+      <arc head="P0" kind="OUTPUT" tail="aliceSignsRefund"/>
+      <arc head="bobSignsLockTx" kind="INPUT" tail="P0"/>
+      <arc head="signedLockTx" kind="OUTPUT" tail="bobSignsLockTx"/>
+      <arc head="publish_SWAPLOCK" kind="INPUT" tail="signedLockTx"/>
+      <arc head="aliceSignsRefund" kind="INPUT" tail="AliceHasBobInfo"/>
+      <arc head="AliceHasBobInfo" kind="OUTPUT" tail="bobSendAliceInfo"/>
+      <arc head="bobSendAliceInfo" kind="INPUT" tail="unsignedLockTx"/>
+      <arc head="bobSendAliceInfo" kind="INPUT" tail="unsignedRefundTx"/>
+      <arc head="unsignedLockTx" kind="OUTPUT" tail="bobInit"/>
+      <arc head="unsignedRefundTx" kind="OUTPUT" tail="bobInit"/>
+      <arc head="bobInit" kind="INPUT" tail="Start"/>
+      <arc head="RefundWallet" kind="OUTPUT" tail="refund_SWAPLOCK"/>
+      <arc head="spend_REFUND" kind="INPUT" tail="RefundWallet"/>
+      <arc head="BobWallet" kind="OUTPUT" mult-k="1.2532226562500002" tail="spend_REFUND">
+        <point x="77.0" y="9.0"/>
+      </arc>
+      <arc head="claim_REFUND" kind="INPUT" tail="RefundWallet"/>
+      <arc head="AliceWallet" kind="OUTPUT" mult-k="0.92880859375" tail="claim_REFUND">
+        <point x="84.0" y="36.5"/>
+      </arc>
+    </edges>
+  </gspn>
+  <gspn name="BTC_XMR_Flow" show-color-cmd="false" show-fluid-cmd="false" show-timed-cmd="false" view-rates="false" zoom="75">
+    <nodes>
+      <transition label-x="5.5" label-y="0.0" name="buy_SWAPLOCK" nservers-x="0.5" rotation="1.5707963267948966" type="EXP" x="65.55" y="38.0"/>
+      <transition label-x="6.0" label-y="0.0" name="publish_SWAPLOCK" nservers-x="0.5" rotation="1.5707963267948966" type="EXP" x="65.55" y="16.0"/>
+      <place label-x="4.5" label-y="0.0" marking="1" name="BobWallet" x="65.0" y="4.0"/>
+      <place label-x="5.0" label-y="0.0" name="LockedWallet" x="65.0" y="32.0"/>
+      <place name="AliceWallet" x="65.0" y="43.0"/>
+      <transition label-x="5.5" label-y="0.0" name="refund_SWAPLOCK" nservers-x="0.5" type="EXP" x="78.55" y="22.0"/>
+      <place name="HaveSignedRefundTX" x="45.0" y="22.0"/>
+      <transition label-y="-2.5" name="aliceSignsRefund" nservers-x="0.5" type="EXP" x="39.55" y="9.0"/>
+      <place alt-name-fn="LATEX_TEXT" name="P0" shown-as="\mathrm{P}_{0}" x="45.0" y="9.0"/>
+      <transition label-y="2.5" name="bobSignsLockTx" nservers-x="0.5" type="EXP" x="51.55" y="9.0"/>
+      <place label-y="-2.0" name="signedLockTx" x="58.0" y="9.0"/>
+      <place name="AliceHasBobInfo" x="31.0" y="9.0"/>
+      <transition name="bobSendAliceInfo" nservers-x="0.5" type="EXP" x="24.55" y="9.0"/>
+      <place label-x="5.0" label-y="-0.5" name="unsignedLockTx" x="18.0" y="5.0"/>
+      <place name="unsignedRefundTx" x="18.0" y="13.0"/>
+      <transition name="bobInit" nservers-x="0.5" type="EXP" x="13.55" y="9.0"/>
+      <place marking="1" name="Start" x="8.0" y="9.0"/>
+      <place name="RefundWallet" x="78.0" y="16.0"/>
+      <transition name="claim_REFUND" nservers-x="0.5" type="EXP" x="87.55" y="16.0"/>
+      <transition label-x="4.5" label-y="0.0" name="spend_REFUND" nservers-x="0.5" type="EXP" x="78.55" y="9.0"/>
+      <text-box bold="true" border-color="#929292" fill-color="none" height="5.0" name="__textBox0" shadow="true" shape="ROUND_RECTANGLE" text-color="#929292" vert-pos="3" width="11.0" x="73.5" y="21.5">Timed Out</text-box>
+      <place label-x="-4.5" label-y="-1.5" name="AliceSeesMoney" x="61.0" y="26.0"/>
+      <transition label-x="-5.0" label-y="0.0" name="publish_XMR_Lock" nservers-x="0.5" type="EXP" x="35.55" y="29.0"/>
+      <place label-x="-4.5" label-y="0.0" name="Locked_XMR" x="35.0" y="36.0"/>
+      <place label-x="-5.0" label-y="0.0" marking="1" name="AliceXMR_Wallet" x="35.0" y="25.0"/>
+      <place label-x="7.5" label-y="0.5" name="BobSeesLockedXMR_Money" x="46.0" y="30.0"/>
+      <transition label-x="6.5" label-y="0.0" name="Bob_verifyAndSend_Secret" nservers-x="0.5" type="EXP" x="46.55" y="34.0"/>
+      <place label-x="4.5" label-y="2.0" name="AliceKnow_Secret" x="46.0" y="38.0"/>
+      <place name="Bob_Can_Access_XMR" x="55.0" y="42.0"/>
+      <transition label-x="-5.5" label-y="0.0" name="bob_Claim_XMR" nservers-x="0.5" type="EXP" x="35.55" y="42.0"/>
+      <place name="Bob_XMR" x="35.0" y="47.0"/>
+      <place name="Alice_unlock_XMR" x="57.0" y="16.0"/>
+      <transition label-x="-5.0" label-y="0.0" name="alice_claim_XMR" nservers-x="0.5" type="EXP" x="30.55" y="32.0"/>
+      <text-box bold="true" border-color="#929292" fill-color="none" height="6.0" name="copy___textBox0" shadow="true" shape="ROUND_RECTANGLE" text-color="#929292" width="8.5" x="83.75" y="13.0">Time Out 2</text-box>
+      <text-box bold="true" border-color="#b6b6b6" fill-color="#ffd8c0" height="30.0" name="__textBox1" shadow="true" shape="ROUND_RECTANGLE" text-color="#000000" width="16.75" x="22.0" y="22.0">Monero</text-box>
+      <text-box bold="true" border-color="#b6b6b6" fill-color="#c0ffd0" height="46.5" name="copy___textBox1" shadow="true" shape="ROUND_RECTANGLE" text-color="#000000" width="29.875" x="63.625" y="1.5">Bitcoin</text-box>
+    </nodes>
+    <edges>
+      <arc head="publish_SWAPLOCK" kind="INPUT" tail="BobWallet"/>
+      <arc head="LockedWallet" kind="OUTPUT" tail="publish_SWAPLOCK"/>
+      <arc head="buy_SWAPLOCK" kind="INPUT" tail="LockedWallet"/>
+      <arc head="AliceWallet" kind="OUTPUT" tail="buy_SWAPLOCK"/>
+      <arc head="refund_SWAPLOCK" kind="INPUT" tail="LockedWallet"/>
+      <arc head="refund_SWAPLOCK" kind="INPUT" tail="HaveSignedRefundTX"/>
+      <arc head="HaveSignedRefundTX" kind="OUTPUT" tail="aliceSignsRefund"/>
+      <arc head="P0" kind="OUTPUT" tail="aliceSignsRefund"/>
+      <arc head="bobSignsLockTx" kind="INPUT" tail="P0"/>
+      <arc head="signedLockTx" kind="OUTPUT" tail="bobSignsLockTx"/>
+      <arc head="publish_SWAPLOCK" kind="INPUT" tail="signedLockTx"/>
+      <arc head="aliceSignsRefund" kind="INPUT" tail="AliceHasBobInfo"/>
+      <arc head="AliceHasBobInfo" kind="OUTPUT" tail="bobSendAliceInfo"/>
+      <arc head="bobSendAliceInfo" kind="INPUT" tail="unsignedLockTx"/>
+      <arc head="bobSendAliceInfo" kind="INPUT" tail="unsignedRefundTx"/>
+      <arc head="unsignedLockTx" kind="OUTPUT" tail="bobInit"/>
+      <arc head="unsignedRefundTx" kind="OUTPUT" tail="bobInit"/>
+      <arc head="bobInit" kind="INPUT" tail="Start"/>
+      <arc head="RefundWallet" kind="OUTPUT" tail="refund_SWAPLOCK"/>
+      <arc head="spend_REFUND" kind="INPUT" tail="RefundWallet"/>
+      <arc head="BobWallet" kind="OUTPUT" mult-k="1.2532226562500002" tail="spend_REFUND">
+        <point x="79.0" y="7.0"/>
+      </arc>
+      <arc head="claim_REFUND" kind="INPUT" tail="RefundWallet"/>
+      <arc head="AliceWallet" kind="OUTPUT" mult-k="0.92880859375" tail="claim_REFUND">
+        <point x="86.0" y="34.5"/>
+      </arc>
+      <arc head="AliceSeesMoney" kind="OUTPUT" tail="publish_SWAPLOCK"/>
+      <arc head="publish_XMR_Lock" kind="INPUT" tail="AliceXMR_Wallet"/>
+      <arc head="Locked_XMR" kind="OUTPUT" tail="publish_XMR_Lock"/>
+      <arc head="publish_XMR_Lock" kind="INPUT" mult-k="1.2604492187499998" tail="AliceSeesMoney">
+        <point x="53.5576171875" y="27.97412109375"/>
+      </arc>
+      <arc head="BobSeesLockedXMR_Money" kind="OUTPUT" tail="publish_XMR_Lock"/>
+      <arc head="Bob_verifyAndSend_Secret" kind="INPUT" tail="BobSeesLockedXMR_Money"/>
+      <arc head="AliceKnow_Secret" kind="OUTPUT" tail="Bob_verifyAndSend_Secret"/>
+      <arc head="buy_SWAPLOCK" kind="INPUT" tail="AliceKnow_Secret"/>
+      <arc head="Bob_Can_Access_XMR" kind="OUTPUT" tail="buy_SWAPLOCK"/>
+      <arc head="bob_Claim_XMR" kind="INPUT" tail="Locked_XMR"/>
+      <arc head="bob_Claim_XMR" kind="INPUT" tail="Bob_Can_Access_XMR"/>
+      <arc head="Bob_XMR" kind="OUTPUT" tail="bob_Claim_XMR"/>
+      <arc head="Alice_unlock_XMR" kind="OUTPUT" tail="spend_REFUND"/>
+      <arc head="alice_claim_XMR" kind="INPUT" tail="Locked_XMR"/>
+      <arc head="AliceXMR_Wallet" kind="OUTPUT" tail="alice_claim_XMR"/>
+      <arc head="alice_claim_XMR" kind="INPUT" mult-k="1.27939453125" tail="Alice_unlock_XMR">
+        <point x="39.5" y="33.0"/>
+      </arc>
+    </edges>
+  </gspn>
+  <gspn name="PT 4" show-color-cmd="false" show-fluid-cmd="false" show-timed-cmd="false" view-rates="false" zoom="75">
+    <nodes>
+      <transition label-x="-5.5" label-y="0.0" name="buy_SWAPLOCK" nservers-x="0.5" rotation="1.5707963267948966" type="EXP" x="57.55" y="67.0"/>
+      <transition label-x="-6.0" label-y="0.0" name="publish_SWAPLOCK" nservers-x="0.5" rotation="1.5707963267948966" type="EXP" x="57.55" y="49.0"/>
+      <place label-x="4.5" label-y="0.0" marking="1" name="BobWallet" x="57.0" y="32.0"/>
+      <place label-x="5.0" label-y="0.0" name="LockedWallet" x="57.0" y="61.0"/>
+      <place name="AliceWallet" x="57.0" y="73.0"/>
+      <transition label-x="3.0" label-y="2.0" name="refund_SWAPLOCK" nservers-x="0.5" type="EXP" x="64.55" y="54.0"/>
+      <place label-y="2.5" name="HaveSignedRefundTX" x="42.0" y="54.0"/>
+      <transition label-y="2.0" name="aliceSignsRefund" nservers-x="0.5" type="EXP" x="33.55" y="51.0"/>
+      <place alt-name-fn="LATEX_TEXT" label-x="-1.5" label-y="-1.0" name="P0" shown-as="\mathrm{P}_{0}" x="35.0" y="43.0"/>
+      <transition label-y="-2.5" name="bobSignsLockTx" nservers-x="0.5" type="EXP" x="43.55" y="43.0"/>
+      <place label-y="-3.0" name="signedLockTx" x="53.0" y="43.0"/>
+      <place name="AliceHasBobInfo" x="25.0" y="51.0"/>
+      <transition name="bobSendAliceInfo" nservers-x="0.5" type="EXP" x="18.55" y="51.0"/>
+      <place label-x="5.0" label-y="-0.5" name="unsignedLockTx" x="12.0" y="47.0"/>
+      <place name="unsignedRefundTx" x="12.0" y="55.0"/>
+      <transition name="bobInit" nservers-x="0.5" type="EXP" x="7.55" y="51.0"/>
+      <place marking="1" name="Start" x="2.0" y="51.0"/>
+      <transition name="claim_REFUND" nservers-x="0.5" type="EXP" x="73.55" y="44.0"/>
+      <transition label-x="4.5" name="spend_REFUND" nservers-x="0.5" type="EXP" x="64.55" y="38.0"/>
+      <text-box bold="true" border-color="#929292" fill-color="none" height="5.0" name="__textBox0" shadow="true" shape="ROUND_RECTANGLE" text-color="#929292" vert-pos="3" width="11.0" x="59.5" y="50.5">Timed Out</text-box>
+      <place label-y="-2.0" name="AliceSeesMoney" x="94.0" y="49.0"/>
+      <transition label-x="5.0" label-y="0.0" name="publish_XMR_Lock" nservers-x="0.5" type="EXP" x="103.55" y="55.0"/>
+      <place label-x="-4.5" label-y="0.0" name="Locked_XMR" x="103.0" y="61.0"/>
+      <place label-x="5.0" marking="1" name="AliceXMR_Wallet" x="103.0" y="44.0"/>
+      <place label-x="-3.0" label-y="-2.5" name="BobSeesLockedXMR_Money" x="94.0" y="58.0"/>
+      <transition label-x="4.0" label-y="2.0" name="Bob_verifyAndSend_Secret" nservers-x="0.5" type="EXP" x="81.55" y="67.0"/>
+      <place label-y="-2.0" name="AliceKnow_Secret" x="64.0" y="67.0"/>
+      <place name="Bob_Can_Access_XMR" x="85.0" y="74.0"/>
+      <transition label-x="5.0" label-y="0.0" name="bob_Claim_XMR" nservers-x="0.5" type="EXP" x="103.55" y="74.0"/>
+      <place label-x="-4.0" label-y="0.0" name="Bob_XMR" x="103.0" y="79.0"/>
+      <place label-y="-2.5" name="Alice_unlock_XMR" x="85.0" y="38.0"/>
+      <transition label-x="-1.5" label-y="-3.0" name="alice_claim_XMR" nservers-x="0.5" type="EXP" x="117.55" y="38.0"/>
+      <text-box bold="true" border-color="#929292" fill-color="none" height="6.0" name="copy___textBox0" shadow="true" shape="ROUND_RECTANGLE" text-color="#929292" width="8.5" x="69.75" y="42.0">Time Out 2</text-box>
+      <text-box bold="true" border-color="#b6b6b6" fill-color="#ffd8c0" height="53.5" name="__textBox1" shadow="true" shape="ROUND_RECTANGLE" text-color="#000000" width="28.875" x="92.625" y="31.0">Monero</text-box>
+      <text-box bold="true" border-color="#b6b6b6" fill-color="#c0ffd0" height="46.5" name="copy___textBox1" shadow="true" shape="ROUND_RECTANGLE" text-color="#000000" width="29.875" x="49.625" y="30.5">Bitcoin</text-box>
+      <place label-x="4.0" name="RefundWallet" x="64.0" y="44.0"/>
+    </nodes>
+    <edges>
+      <arc head="publish_SWAPLOCK" kind="INPUT" tail="BobWallet"/>
+      <arc head="LockedWallet" kind="OUTPUT" tail="publish_SWAPLOCK"/>
+      <arc head="buy_SWAPLOCK" kind="INPUT" tail="LockedWallet"/>
+      <arc head="AliceWallet" kind="OUTPUT" tail="buy_SWAPLOCK"/>
+      <arc head="refund_SWAPLOCK" kind="INPUT" tail="LockedWallet"/>
+      <arc head="HaveSignedRefundTX" kind="OUTPUT" tail="aliceSignsRefund"/>
+      <arc head="P0" kind="OUTPUT" tail="aliceSignsRefund"/>
+      <arc head="bobSignsLockTx" kind="INPUT" tail="P0"/>
+      <arc head="signedLockTx" kind="OUTPUT" tail="bobSignsLockTx"/>
+      <arc head="aliceSignsRefund" kind="INPUT" tail="AliceHasBobInfo"/>
+      <arc head="AliceHasBobInfo" kind="OUTPUT" tail="bobSendAliceInfo"/>
+      <arc head="bobSendAliceInfo" kind="INPUT" tail="unsignedLockTx"/>
+      <arc head="bobSendAliceInfo" kind="INPUT" tail="unsignedRefundTx"/>
+      <arc head="unsignedLockTx" kind="OUTPUT" tail="bobInit"/>
+      <arc head="unsignedRefundTx" kind="OUTPUT" tail="bobInit"/>
+      <arc head="bobInit" kind="INPUT" tail="Start"/>
+      <arc head="BobWallet" kind="OUTPUT" mult-k="1.2532226562500002" tail="spend_REFUND">
+        <point x="65.0" y="36.0"/>
+      </arc>
+      <arc head="AliceWallet" kind="OUTPUT" mult-k="0.92880859375" tail="claim_REFUND">
+        <point x="74.0" y="70.5"/>
+      </arc>
+      <arc head="AliceSeesMoney" kind="OUTPUT" tail="publish_SWAPLOCK"/>
+      <arc head="publish_XMR_Lock" kind="INPUT" tail="AliceXMR_Wallet"/>
+      <arc head="Locked_XMR" kind="OUTPUT" tail="publish_XMR_Lock"/>
+      <arc head="BobSeesLockedXMR_Money" kind="OUTPUT" tail="publish_XMR_Lock"/>
+      <arc head="Bob_verifyAndSend_Secret" kind="INPUT" tail="BobSeesLockedXMR_Money"/>
+      <arc head="AliceKnow_Secret" kind="OUTPUT" tail="Bob_verifyAndSend_Secret"/>
+      <arc head="buy_SWAPLOCK" kind="INPUT" tail="AliceKnow_Secret"/>
+      <arc head="Bob_Can_Access_XMR" kind="OUTPUT" tail="buy_SWAPLOCK"/>
+      <arc head="bob_Claim_XMR" kind="INPUT" tail="Locked_XMR"/>
+      <arc head="bob_Claim_XMR" kind="INPUT" tail="Bob_Can_Access_XMR"/>
+      <arc head="Bob_XMR" kind="OUTPUT" tail="bob_Claim_XMR"/>
+      <arc head="Alice_unlock_XMR" kind="OUTPUT" tail="spend_REFUND"/>
+      <arc head="alice_claim_XMR" kind="INPUT" mult-k="0.7614257812499999" tail="Locked_XMR">
+        <point x="118.0" y="58.5"/>
+      </arc>
+      <arc head="AliceXMR_Wallet" kind="OUTPUT" tail="alice_claim_XMR"/>
+      <arc head="publish_XMR_Lock" kind="INPUT" tail="AliceSeesMoney"/>
+      <arc head="alice_claim_XMR" kind="INPUT" tail="Alice_unlock_XMR"/>
+      <arc head="refund_SWAPLOCK" kind="INPUT" tail="HaveSignedRefundTX"/>
+      <arc head="publish_SWAPLOCK" kind="INPUT" tail="signedLockTx"/>
+      <arc head="RefundWallet" kind="OUTPUT" tail="refund_SWAPLOCK"/>
+      <arc head="spend_REFUND" kind="INPUT" tail="RefundWallet"/>
+      <arc head="claim_REFUND" kind="INPUT" tail="RefundWallet"/>
+    </edges>
+  </gspn>
+  <gspn name="simplified_1" show-color-cmd="false" show-fluid-cmd="false" show-timed-cmd="false" view-rates="false" zoom="75">
+    <nodes>
+      <transition label-x="-5.5" label-y="0.0" name="buy_SWAPLOCK" nservers-x="0.5" rotation="1.5707963267948966" type="EXP" x="32.55" y="39.0"/>
+      <transition label-x="-6.0" label-y="-2.0" name="bob_publish_SWAPLOCK" nservers-x="0.5" rotation="1.5707963267948966" type="EXP" x="32.55" y="21.0"/>
+      <place label-x="4.5" label-y="0.0" marking="1" name="BobWallet" x="32.0" y="4.0"/>
+      <place label-x="5.0" label-y="0.0" name="LockedWallet" x="32.0" y="33.0"/>
+      <place name="AliceWallet" x="32.0" y="45.0"/>
+      <transition label-x="3.0" label-y="2.0" name="refund_SWAPLOCK" nservers-x="0.5" type="EXP" x="39.55" y="26.0"/>
+      <place label-y="2.0" name="HaveSignedRefundTX" x="16.0" y="26.0"/>
+      <transition label-y="2.0" name="aliceSignsRefund" nservers-x="0.5" type="EXP" x="8.55" y="23.0"/>
+      <place label-y="-2.0" name="signedLockTx" x="16.0" y="21.0"/>
+      <place marking="1" name="Start" x="2.0" y="23.0"/>
+      <transition name="claim_REFUND" nservers-x="0.5" type="EXP" x="48.55" y="16.0"/>
+      <transition label-x="4.5" name="spend_REFUND" nservers-x="0.5" type="EXP" x="39.55" y="10.0"/>
+      <text-box bold="true" border-color="#929292" fill-color="none" height="5.0" name="__textBox0" shadow="true" shape="ROUND_RECTANGLE" text-color="#929292" vert-pos="3" width="11.0" x="34.5" y="22.5">Timed Out</text-box>
+      <place label-y="-2.0" name="AliceSeesMoney" x="69.0" y="21.0"/>
+      <transition label-x="5.0" label-y="0.0" name="publish_XMR_Lock" nservers-x="0.5" type="EXP" x="78.55" y="27.0"/>
+      <place label-x="-4.5" label-y="0.0" name="Locked_XMR" x="78.0" y="33.0"/>
+      <place label-x="5.0" marking="1" name="AliceXMR_Wallet" x="78.0" y="16.0"/>
+      <place label-x="-3.0" label-y="-2.5" name="BobSeesLockedXMR_Money" x="69.0" y="30.0"/>
+      <transition label-x="4.0" label-y="2.0" name="Bob_verifyAndSend_Secret" nservers-x="0.5" type="EXP" x="56.55" y="39.0"/>
+      <place label-y="-2.0" name="AliceKnow_Secret" x="39.0" y="39.0"/>
+      <place name="Bob_Can_Access_XMR" x="60.0" y="46.0"/>
+      <transition label-x="5.0" label-y="0.0" name="bob_Claim_XMR" nservers-x="0.5" type="EXP" x="78.55" y="46.0"/>
+      <place label-x="-4.0" label-y="0.0" name="Bob_XMR" x="78.0" y="51.0"/>
+      <place label-y="-2.5" name="Alice_unlock_XMR" x="60.0" y="10.0"/>
+      <transition label-x="-1.5" label-y="-3.0" name="alice_claim_XMR" nservers-x="0.5" type="EXP" x="92.55" y="10.0"/>
+      <text-box bold="true" border-color="#929292" fill-color="none" height="6.0" name="copy___textBox0" shadow="true" shape="ROUND_RECTANGLE" text-color="#929292" width="8.5" x="44.75" y="14.0">Time Out 2</text-box>
+      <text-box bold="true" border-color="#b6b6b6" fill-color="#ffd8c0" height="53.5" name="__textBox1" shadow="true" shape="ROUND_RECTANGLE" text-color="#000000" width="28.875" x="67.625" y="3.0">Monero</text-box>
+      <text-box bold="true" border-color="#b6b6b6" fill-color="#c0ffd0" height="46.5" name="copy___textBox1" shadow="true" shape="ROUND_RECTANGLE" text-color="#000000" width="29.875" x="24.625" y="2.5">Bitcoin</text-box>
+      <place label-x="4.0" name="RefundWallet" x="39.0" y="16.0"/>
+    </nodes>
+    <edges>
+      <arc head="bob_publish_SWAPLOCK" kind="INPUT" tail="BobWallet"/>
+      <arc head="LockedWallet" kind="OUTPUT" tail="bob_publish_SWAPLOCK"/>
+      <arc head="buy_SWAPLOCK" kind="INPUT" tail="LockedWallet"/>
+      <arc head="AliceWallet" kind="OUTPUT" tail="buy_SWAPLOCK"/>
+      <arc head="refund_SWAPLOCK" kind="INPUT" tail="LockedWallet"/>
+      <arc head="HaveSignedRefundTX" kind="OUTPUT" tail="aliceSignsRefund"/>
+      <arc head="BobWallet" kind="OUTPUT" mult-k="1.2532226562500002" tail="spend_REFUND">
+        <point x="40.0" y="8.0"/>
+      </arc>
+      <arc head="AliceWallet" kind="OUTPUT" mult-k="0.92880859375" tail="claim_REFUND">
+        <point x="49.0" y="42.5"/>
+      </arc>
+      <arc head="AliceSeesMoney" kind="OUTPUT" tail="bob_publish_SWAPLOCK"/>
+      <arc head="publish_XMR_Lock" kind="INPUT" tail="AliceXMR_Wallet"/>
+      <arc head="Locked_XMR" kind="OUTPUT" tail="publish_XMR_Lock"/>
+      <arc head="BobSeesLockedXMR_Money" kind="OUTPUT" tail="publish_XMR_Lock"/>
+      <arc head="Bob_verifyAndSend_Secret" kind="INPUT" tail="BobSeesLockedXMR_Money"/>
+      <arc head="AliceKnow_Secret" kind="OUTPUT" tail="Bob_verifyAndSend_Secret"/>
+      <arc head="buy_SWAPLOCK" kind="INPUT" tail="AliceKnow_Secret"/>
+      <arc head="Bob_Can_Access_XMR" kind="OUTPUT" tail="buy_SWAPLOCK"/>
+      <arc head="bob_Claim_XMR" kind="INPUT" tail="Locked_XMR"/>
+      <arc head="bob_Claim_XMR" kind="INPUT" tail="Bob_Can_Access_XMR"/>
+      <arc head="Bob_XMR" kind="OUTPUT" tail="bob_Claim_XMR"/>
+      <arc head="Alice_unlock_XMR" kind="OUTPUT" tail="spend_REFUND"/>
+      <arc head="alice_claim_XMR" kind="INPUT" mult-k="0.7614257812499999" tail="Locked_XMR">
+        <point x="93.0" y="30.5"/>
+      </arc>
+      <arc head="AliceXMR_Wallet" kind="OUTPUT" tail="alice_claim_XMR"/>
+      <arc head="publish_XMR_Lock" kind="INPUT" tail="AliceSeesMoney"/>
+      <arc head="alice_claim_XMR" kind="INPUT" tail="Alice_unlock_XMR"/>
+      <arc head="refund_SWAPLOCK" kind="INPUT" tail="HaveSignedRefundTX"/>
+      <arc head="bob_publish_SWAPLOCK" kind="INPUT" tail="signedLockTx"/>
+      <arc head="RefundWallet" kind="OUTPUT" tail="refund_SWAPLOCK"/>
+      <arc head="spend_REFUND" kind="INPUT" tail="RefundWallet"/>
+      <arc head="claim_REFUND" kind="INPUT" tail="RefundWallet"/>
+      <arc head="aliceSignsRefund" kind="INPUT" tail="Start"/>
+      <arc head="signedLockTx" kind="OUTPUT" tail="aliceSignsRefund"/>
+    </edges>
+  </gspn>
+  <gspn name="simplified_2" show-color-cmd="false" show-fluid-cmd="false" show-timed-cmd="false" view-rates="false" zoom="50">
+    <nodes>
+      <transition label-x="-7.0" label-y="0.0" name="alice_buy_SWAPLOCK" nservers-x="0.5" rotation="1.5707963267948966" type="EXP" x="32.55" y="39.0"/>
+      <transition label-x="-6.0" label-y="-2.0" name="bob_publish_SWAPLOCK" nservers-x="0.5" rotation="1.5707963267948966" type="EXP" x="32.55" y="21.0"/>
+      <place label-x="4.5" label-y="0.0" marking="1" name="BobWallet" x="32.0" y="4.0"/>
+      <place label-x="5.0" label-y="0.0" name="LockedWallet" x="32.0" y="33.0"/>
+      <place name="AliceWallet" x="32.0" y="45.0"/>
+      <transition label-x="3.0" label-y="2.0" name="bob_refund_SWAPLOCK" nservers-x="0.5" type="EXP" x="39.55" y="26.0"/>
+      <place label-y="2.0" name="HaveSignedRefundTX" x="16.0" y="26.0"/>
+      <transition label-y="2.0" name="alice_signRefund" nservers-x="0.5" type="EXP" x="8.55" y="23.0"/>
+      <place label-y="-2.0" name="signedLockTx" x="16.0" y="21.0"/>
+      <place marking="1" name="Start" x="2.0" y="23.0"/>
+      <transition name="alice_claim_REFUND" nservers-x="0.5" type="EXP" x="48.55" y="16.0"/>
+      <transition label-x="4.5" name="bob_spend_REFUND" nservers-x="0.5" type="EXP" x="39.55" y="10.0"/>
+      <text-box bold="true" border-color="#929292" fill-color="none" height="5.0" name="__textBox0" shadow="true" shape="ROUND_RECTANGLE" text-color="#929292" vert-pos="3" width="11.0" x="34.5" y="22.5">Timed Out</text-box>
+      <place label-y="-2.0" name="AliceSeesMoney" x="69.0" y="21.0"/>
+      <transition label-x="5.0" label-y="0.0" name="alice_publish_XMR_Lock" nservers-x="0.5" type="EXP" x="78.55" y="27.0"/>
+      <place label-x="-4.5" label-y="0.0" name="Locked_XMR" x="78.0" y="33.0"/>
+      <place label-x="5.0" marking="1" name="AliceXMR_Wallet" x="78.0" y="16.0"/>
+      <place label-x="-3.0" label-y="-2.5" name="BobSeesLockedXMR_Money" x="69.0" y="30.0"/>
+      <transition label-x="4.0" label-y="2.0" name="Bob_verifyAndSend_Secret" nservers-x="0.5" type="EXP" x="56.55" y="39.0"/>
+      <place label-y="-2.0" name="AliceKnow_Secret" x="39.0" y="39.0"/>
+      <place name="Bob_Can_Access_XMR" x="60.0" y="46.0"/>
+      <transition label-x="5.0" label-y="0.0" name="bob_Claim_XMR" nservers-x="0.5" type="EXP" x="78.55" y="46.0"/>
+      <place label-x="-4.0" label-y="0.0" name="Bob_XMR" x="78.0" y="51.0"/>
+      <place label-y="-2.5" name="Alice_unlock_XMR" x="60.0" y="10.0"/>
+      <transition label-x="-1.5" label-y="-3.0" name="alice_claim_XMR" nservers-x="0.5" type="EXP" x="92.55" y="10.0"/>
+      <text-box bold="true" border-color="#929292" fill-color="none" height="6.0" name="copy___textBox0" shadow="true" shape="ROUND_RECTANGLE" text-color="#929292" width="8.5" x="44.75" y="14.0">Time Out 2</text-box>
+      <text-box bold="true" border-color="#b6b6b6" fill-color="#ffd8c0" height="53.5" name="__textBox1" shadow="true" shape="ROUND_RECTANGLE" text-color="#000000" width="28.875" x="67.625" y="3.0">Monero</text-box>
+      <text-box bold="true" border-color="#b6b6b6" fill-color="#c0ffd0" height="46.5" name="copy___textBox1" shadow="true" shape="ROUND_RECTANGLE" text-color="#000000" width="29.875" x="24.625" y="2.5">Bitcoin</text-box>
+      <place label-x="4.0" name="RefundWallet" x="39.0" y="16.0"/>
+    </nodes>
+    <edges>
+      <arc head="bob_publish_SWAPLOCK" kind="INPUT" tail="BobWallet"/>
+      <arc head="LockedWallet" kind="OUTPUT" tail="bob_publish_SWAPLOCK"/>
+      <arc head="alice_buy_SWAPLOCK" kind="INPUT" tail="LockedWallet"/>
+      <arc head="AliceWallet" kind="OUTPUT" tail="alice_buy_SWAPLOCK"/>
+      <arc head="bob_refund_SWAPLOCK" kind="INPUT" tail="LockedWallet"/>
+      <arc head="HaveSignedRefundTX" kind="OUTPUT" tail="alice_signRefund"/>
+      <arc head="BobWallet" kind="OUTPUT" mult-k="1.2532226562500002" tail="bob_spend_REFUND">
+        <point x="40.0" y="8.0"/>
+      </arc>
+      <arc head="AliceWallet" kind="OUTPUT" mult-k="0.92880859375" tail="alice_claim_REFUND">
+        <point x="49.0" y="42.5"/>
+      </arc>
+      <arc head="AliceSeesMoney" kind="OUTPUT" tail="bob_publish_SWAPLOCK"/>
+      <arc head="alice_publish_XMR_Lock" kind="INPUT" tail="AliceXMR_Wallet"/>
+      <arc head="Locked_XMR" kind="OUTPUT" tail="alice_publish_XMR_Lock"/>
+      <arc head="BobSeesLockedXMR_Money" kind="OUTPUT" tail="alice_publish_XMR_Lock"/>
+      <arc head="Bob_verifyAndSend_Secret" kind="INPUT" tail="BobSeesLockedXMR_Money"/>
+      <arc head="AliceKnow_Secret" kind="OUTPUT" tail="Bob_verifyAndSend_Secret"/>
+      <arc head="alice_buy_SWAPLOCK" kind="INPUT" tail="AliceKnow_Secret"/>
+      <arc head="Bob_Can_Access_XMR" kind="OUTPUT" tail="alice_buy_SWAPLOCK"/>
+      <arc head="bob_Claim_XMR" kind="INPUT" tail="Locked_XMR"/>
+      <arc head="bob_Claim_XMR" kind="INPUT" tail="Bob_Can_Access_XMR"/>
+      <arc head="Bob_XMR" kind="OUTPUT" tail="bob_Claim_XMR"/>
+      <arc head="Alice_unlock_XMR" kind="OUTPUT" tail="bob_spend_REFUND"/>
+      <arc head="alice_claim_XMR" kind="INPUT" mult-k="0.7614257812499999" tail="Locked_XMR">
+        <point x="93.0" y="30.5"/>
+      </arc>
+      <arc head="AliceXMR_Wallet" kind="OUTPUT" tail="alice_claim_XMR"/>
+      <arc head="alice_publish_XMR_Lock" kind="INPUT" tail="AliceSeesMoney"/>
+      <arc head="alice_claim_XMR" kind="INPUT" tail="Alice_unlock_XMR"/>
+      <arc head="bob_refund_SWAPLOCK" kind="INPUT" tail="HaveSignedRefundTX"/>
+      <arc head="bob_publish_SWAPLOCK" kind="INPUT" tail="signedLockTx"/>
+      <arc head="RefundWallet" kind="OUTPUT" tail="bob_refund_SWAPLOCK"/>
+      <arc head="bob_spend_REFUND" kind="INPUT" tail="RefundWallet"/>
+      <arc head="alice_claim_REFUND" kind="INPUT" tail="RefundWallet"/>
+      <arc head="alice_signRefund" kind="INPUT" tail="Start"/>
+      <arc head="signedLockTx" kind="OUTPUT" tail="alice_signRefund"/>
+    </edges>
+  </gspn>
+  <gspn name="PT 5" show-color-cmd="false" show-fluid-cmd="false" show-timed-cmd="false" view-rates="false" zoom="75">
+    <nodes>
+      <place label-y="2.0" marking="1" name="BTC_Bob" x="2.0" y="8.0"/>
+      <transition label-y="-2.5" name="bobAndAlice_Init" nservers-x="0.5" type="EXP" x="7.55" y="8.0"/>
+      <place label-x="-1.0" label-y="2.0" name="BTC_Lock" x="13.0" y="8.0"/>
+      <transition name="aliceLock" nservers-x="0.5" type="EXP" x="17.55" y="5.0"/>
+      <transition label-x="0.375" label-y="2.25" name="aliceTimeout" nservers-x="0.5" type="EXP" x="17.55" y="15.0"/>
+      <transition name="bobClaim" nservers-x="0.5" type="EXP" x="30.55" y="5.0"/>
+      <place name="XMR_Lock" x="22.0" y="5.0"/>
+      <place name="Timeout1" x="24.0" y="15.0"/>
+      <transition label-y="-2.0" name="bobRefund" nservers-x="0.5" type="EXP" x="30.55" y="12.0"/>
+      <transition name="bobTimeout" nservers-x="0.5" type="EXP" x="30.55" y="19.0"/>
+      <place name="P4" x="35.0" y="19.0"/>
+      <place name="End_Refund_OK" x="52.0" y="12.0"/>
+      <transition name="aliceClaim" nservers-x="0.5" type="EXP" x="40.55" y="19.0"/>
+      <place name="End_Refund_BobIsAnIdiot" x="52.0" y="19.0"/>
+      <place name="XMR_Bob" x="37.0" y="5.0"/>
+      <transition name="aliceClaimBTC" nservers-x="0.5" type="EXP" x="44.55" y="5.0"/>
+      <place name="BTC_Alice" x="52.0" y="5.0"/>
+    </nodes>
+    <edges>
+      <arc head="bobAndAlice_Init" kind="INPUT" tail="BTC_Bob"/>
+      <arc head="BTC_Lock" kind="OUTPUT" tail="bobAndAlice_Init"/>
+      <arc head="aliceLock" kind="INPUT" tail="BTC_Lock"/>
+      <arc head="aliceTimeout" kind="INPUT" tail="BTC_Lock"/>
+      <arc head="XMR_Lock" kind="OUTPUT" tail="aliceLock"/>
+      <arc head="bobClaim" kind="INPUT" tail="XMR_Lock"/>
+      <arc head="Timeout1" kind="OUTPUT" tail="aliceTimeout"/>
+      <arc head="bobRefund" kind="INPUT" tail="Timeout1"/>
+      <arc head="bobTimeout" kind="INPUT" tail="Timeout1"/>
+      <arc head="End_Refund_OK" kind="OUTPUT" tail="bobRefund"/>
+      <arc head="P4" kind="OUTPUT" tail="bobTimeout"/>
+      <arc head="aliceClaim" kind="INPUT" tail="P4"/>
+      <arc head="End_Refund_BobIsAnIdiot" kind="OUTPUT" tail="aliceClaim"/>
+      <arc head="XMR_Bob" kind="OUTPUT" tail="bobClaim"/>
+      <arc head="aliceClaimBTC" kind="INPUT" tail="XMR_Bob"/>
+      <arc head="BTC_Alice" kind="OUTPUT" tail="aliceClaimBTC"/>
+    </edges>
+  </gspn>
+  <gspn name="Casino" show-color-cmd="false" show-fluid-cmd="false" show-timed-cmd="false" view-rates="false">
+    <nodes>
+      <place marking="1" name="P0" x="12.0" y="10.0"/>
+      <transition label-y="-2.0" name="bobLocks" nservers-x="0.5" type="EXP" x="18.55" y="10.0"/>
+      <place name="P1" x="24.0" y="10.0"/>
+      <transition label-y="-2.0" name="casinoCry" nservers-x="0.5" type="EXP" x="30.55" y="6.0"/>
+      <place label-y="2.0" name="Double" x="36.0" y="6.0"/>
+      <transition label-y="2.0" name="casinoLol" nservers-x="0.5" type="EXP" x="30.55" y="14.0"/>
+      <place label-y="2.0" name="Nothing" x="36.0" y="14.0"/>
+      <transition label-y="-2.0" name="bobClaim" nservers-x="0.5" type="EXP" x="42.55" y="6.0"/>
+      <place name="P2" x="47.0" y="6.0"/>
+      <place label-x="-4.0" label-y="0.0" marking="10" name="BobsWallet" x="16.0" y="20.0"/>
+      <place marking="50" name="CasinoWallet" x="23.0" y="17.0"/>
+    </nodes>
+    <edges>
+      <arc head="bobLocks" kind="INPUT" tail="P0"/>
+      <arc head="P1" kind="OUTPUT" tail="bobLocks"/>
+      <arc head="casinoCry" kind="INPUT" tail="P1"/>
+      <arc head="Double" kind="OUTPUT" tail="casinoCry"/>
+      <arc head="casinoLol" kind="INPUT" tail="P1"/>
+      <arc head="Nothing" kind="OUTPUT" tail="casinoLol"/>
+      <arc head="bobClaim" kind="INPUT" tail="Double"/>
+      <arc head="P2" kind="OUTPUT" tail="bobClaim"/>
+      <arc head="CasinoWallet" kind="OUTPUT" mult="10" tail="bobLocks">
+        <point x="24.0" y="13.5"/>
+      </arc>
+      <arc head="BobsWallet" kind="OUTPUT" mult="20" mult-k="2.33154296875" mult-x="3.5284673645463727E-4" mult-y="1.00222204463304" tail="bobClaim">
+        <point x="44.5" y="9.5"/>
+        <point x="44.5" y="21.0"/>
+      </arc>
+      <arc head="bobLocks" kind="INPUT" mult="10" tail="BobsWallet">
+        <point x="17.0" y="12.0"/>
+      </arc>
+      <arc head="bobClaim" kind="INPUT" mult="20" tail="CasinoWallet">
+        <point x="41.5" y="18.0"/>
+        <point x="41.5" y="8.5"/>
+      </arc>
+    </edges>
+  </gspn>
+  <gspn name="PT 6" show-color-cmd="false" show-fluid-cmd="false" show-timed-cmd="false" view-rates="false">
+    <nodes>
+      <place name="Lol" x="8.0" y="8.0"/>
+      <transition name="DoIt" nservers-x="0.5" type="EXP" x="14.55" y="8.0"/>
+      <place name="P0" x="20.0" y="8.0"/>
+      <transition name="didNotDoIt_Timeout" nservers-x="0.5" type="EXP" x="15.55" y="3.0"/>
+      <place name="P1" x="21.0" y="3.0"/>
+      <place name="BobWallet" x="17.0" y="14.0"/>
+    </nodes>
+    <edges>
+      <arc head="DoIt" kind="INPUT" tail="Lol"/>
+      <arc head="P0" kind="OUTPUT" tail="DoIt"/>
+      <arc head="didNotDoIt_Timeout" kind="INPUT" tail="Lol">
+        <point x="12.0" y="4.0"/>
+      </arc>
+      <arc head="P1" kind="OUTPUT" tail="didNotDoIt_Timeout"/>
+      <arc head="didNotDoIt_Timeout" kind="INPUT" tail="BobWallet">
+        <point x="18.0" y="6.5"/>
+      </arc>
+    </edges>
+  </gspn>
+</project>

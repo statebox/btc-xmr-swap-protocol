@@ -3,7 +3,7 @@ let nbpt = require("./swap-protocol-both.nbpt.json")
 let nll = require("./swap-protocol-both.nll.json")
 
 let output = {
-    names: nbpt.names,
+    transitionNames: nbpt.names,
     net: nll
 }
 

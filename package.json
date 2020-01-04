@@ -1,0 +1,17 @@
+{
+  "name": "xmr-btc-swap",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "convert-nbpt": "stbx convert -i Swap-Protocol.PNPRO --one 'Both Parties' --format nbpt -o swap-protocol-both.nbpt.json",
+    "convert-nll": "stbx convert -i Swap-Protocol.PNPRO --one 'Both Parties' --format nll -o swap-protocol-both.nll.json",
+    "convert": "npm run convert-nbpt && npm run convert-nll"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "stbx": "0.0.13"
+  }
+}
